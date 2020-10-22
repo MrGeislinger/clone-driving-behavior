@@ -1,6 +1,6 @@
 # Overview
 
-> For a more interactive process of the model trainig process and decisions, please see the associated Jupyter notebook [model.ipynb](model.ipynb)
+> For a more interactive format explaining of the model trainig process and the reasons behind those decisions, please see the associated Jupyter notebook [model.ipynb](model.ipynb).
 
 # Method
 
@@ -65,10 +65,18 @@ After the convolutional layers, we flatten the feature maps and pass it through 
 
 To help with hyperparameter tuning, the Adam optimizer was used with Nesterov momentum. This has been shown to perform well on many systems and the Nesterov momentum helps the model converge even faster.
 
-The data was split by using training and validation generators and ultimately evaluated with a testing generator. This allowed the model to be trained in batches for each epoch
+The data was split by using training and validation generators and ultimately evaluated with a testing generator. 20% of the data was retained for validation. This allowed the model to be trained in batches for each epoch.
 
 Early stopping was also implemented so that after the model doesn't improve after a number epochs, the training will stop and retain the best results (according to the training loss). This helps the model from overfitting as the model's weights are tuned during the training process.
 
 # Results
 
 ## Model Evaluation
+
+The model went over iterations (as can be seen in the different [releases](https://github.com/MrGeislinger/clone-driving-behavior/releases)) based on the performance on the simulation results. But to get a better idea before running the full simulation, we used the loss curves from the training and validation sets. This showed many times, we'd reach a point where the validation loss wouldn't decrease implying underfitting. 
+
+This makes sense since the regularization techniques (like dropout layers) and early stopping will avoid overfitting. Typically, when underfitting occured, we would increase the complexity of the neural network by reducing regularization and adding more complex layers.
+
+We also observed certain models performed poorly on turns in the simulation even though a relatively small loss. The model-driven car could drive well for straight sections but performed particularly poorly as it approached edges and making more extreme turns with missing edge barriers. So more data were added by driving around the course more (3 times in total). Data were also collected on "course-correcting" situations (maneuvering to the middle of the lane when near the edge) and specific turns where the model failed. Also, in the image generator, target values close to zero were randomly excluded to encourage the model to not be biased towards driving straight.
+
+After all these adjustments, the model performed quite well and was able to safely drive around the course. See a video of the run [here](video.mp4).
