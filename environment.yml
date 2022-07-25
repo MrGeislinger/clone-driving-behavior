@@ -25,6 +25,7 @@ dependencies:
     - async-timeout==3.0.1
     - attrs==20.2.0
     - cachetools==4.1.1
+    - certifi==2020.6.20
     - chardet==3.0.4
     - click==7.1.2
     - decorator==4.4.2
@@ -51,12 +52,15 @@ dependencies:
     - keras-preprocessing==1.1.2
     - markdown==3.2.2
     - markupsafe==1.1.1
+    - matplotlib==3.5.2
     - monotonic==1.5
     - moviepy==1.0.3
     - multidict==4.7.6
     - numpy==1.18.1
     - oauthlib==3.1.0
+    - opencv-python==4.6.0
     - opt-einsum==3.3.0
+    - pandas==1.4.3
     - pillow==7.2.0
     - proglog==0.1.9
     - protobuf==3.13.0
@@ -69,6 +73,7 @@ dependencies:
     - rsa==4.6
     - scipy==1.4.1
     - six==1.15.0
+    - sklearn==1.1.1
     - tensorboard==2.3.0
     - tensorboard-plugin-wit==1.7.0
     - tensorflow==2.3.1
@@ -84,4 +89,3 @@ dependencies:
     - zope-event==4.5.0
     - zope-interface==5.1.0
 prefix: /Users/vgeislinger/anaconda3/envs/cloning_driving_behavior
-
